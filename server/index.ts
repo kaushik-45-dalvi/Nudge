@@ -25,23 +25,11 @@ const defaultOrigins = [
 const allowedOrigins = [...defaultOrigins, ...envOrigins];
 
 const isAllowedOrigin = (origin: string | undefined): boolean => {
-  if (!origin) return true; // Allow requests with no origin (e.g. server-to-server)
-  if (allowedOrigins.includes(origin)) return true;
-  if (origin.startsWith('http://localhost:')) return true;
-  if (origin.startsWith('http://127.0.0.1:')) return true;
-  // Allow any local network IP (192.168.x.x, 10.x.x.x, 172.16-31.x.x)
-  if (/^https?:\/\/(192\.168\.|10\.|172\.(1[6-9]|2[0-9]|3[01])\.)/.test(origin)) return true;
-  return false;
+  return true; // Allow all origins for seamless cross-platform & deployed connections
 };
 
 const corsOptions = {
-  origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
-    if (isAllowedOrigin(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: true,
   credentials: true
 };
 
@@ -58,13 +46,7 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: (origin, callback) => {
-      if (isAllowedOrigin(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: true,
     methods: ['GET', 'POST'],
     credentials: true
   },

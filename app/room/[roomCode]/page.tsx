@@ -47,60 +47,7 @@ export default function RoomPage() {
     };
   }, [roomCode]);
 
-  // Error state
-  if (error) {
-    return (
-      <div style={{ 
-        minHeight: '100vh', 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center', 
-        fontFamily: 'Inter, system-ui, sans-serif',
-        background: '#FFFFFF'
-      }}>
-        <div style={{ textAlign: 'center', maxWidth: 420, padding: '0 24px' }}>
-          <div style={{
-            width: 64, height: 64, borderRadius: '50%',
-            background: '#FFF0F0', border: '2px solid #FECACA',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            margin: '0 auto 20px', color: '#EF4444'
-          }}>
-            <AlertCircle size={28} />
-          </div>
-          <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '1.6rem', fontWeight: 400, marginBottom: 8, color: '#0A0A0A' }}>
-            Connection Error
-          </h2>
-          <p style={{ fontSize: '0.875rem', color: '#6B6560', lineHeight: 1.6, marginBottom: 24 }}>
-            {error}
-          </p>
-          <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
-            <button
-              onClick={() => {
-                useRoomStore.getState().clearRoom();
-                router.push('/');
-              }}
-              className="btn-outline"
-              style={{ display: 'flex', alignItems: 'center', gap: 6 }}
-            >
-              <ArrowLeft size={14} />
-              Back to Home
-            </button>
-            <button
-              onClick={() => {
-                useRoomStore.getState().setError(null);
-                useRoomStore.getState().setConnecting(true);
-                peerManager.init();
-                signalingClient.joinRoom(roomCode);
-              }}
-              className="btn-primary"
-            >
-              Try Again
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  return <RoomLayout />;
 
   // Loading / connecting state
   if (isConnecting && !roomData) {
