@@ -226,7 +226,7 @@ export function Hero() {
             </h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
-            <FeatureCard hasStripe imageSrc="/transfer-illustration.png" icon={<Zap size={16} color="#E8321A" />} title="Ultra Fast Transfers" desc="Files stream directly over WebRTC. Speed is capped only by your local WiFi — typically 50–200 MB/s with zero relay latency." />
+            <FeatureCard hasStripe imageSrc="/transfer-illustration.png" icon={<Zap size={16} color="#E8321A" />} title="Ultra Fast Transfers" desc="Files stream directly between your devices. Speed is capped only by your local WiFi — typically 50–200 MB/s with zero relay latency." />
             <FeatureCard icon={<Shield size={16} color="#0A0A0A" />} title="Zero Cloud Storage" desc="Your files never touch our servers. Everything transfers peer-to-peer directly between browsers, keeping your data completely private." />
             <FeatureCard imageSrc="/wifi-illustration.png" icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" strokeWidth="2" strokeLinecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>} title="Any Device, Any OS" desc="Works on iPhone, Android, Mac, Windows, Linux — if it runs a browser, Nudge works. No app install, no driver, no pairing dance." />
             <FeatureCard icon={<Share2 size={16} color="#0A0A0A" />} title="Instant Peer Pairing" desc="One click creates a room. Share the code or QR. The second device joins and you're immediately connected and ready to transfer." />

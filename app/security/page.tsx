@@ -28,7 +28,7 @@ export default function SecurityPage() {
               Built for Absolute<br /><span style={{ color: '#E8321A' }}>Privacy &amp; Security</span>
             </h1>
             <p style={{ fontSize: '0.95rem', color: '#6B6560', lineHeight: 1.65, maxWidth: 580, margin: '0 auto 28px' }}>
-              Nudge is designed from the ground up to protect your content. Files stream peer-to-peer over DTLS-encrypted WebRTC channels — zero cloud relay, zero server storage.
+              Nudge is designed from the ground up to protect your content. Files stream peer-to-peer over 256-bit encrypted direct channels — zero cloud relay, zero server storage.
             </p>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
               <button onClick={handleCreateRoom} className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>

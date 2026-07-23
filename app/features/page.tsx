@@ -68,14 +68,14 @@ export default function FeaturesPage() {
   };
 
   const features = [
-    { icon: <Zap size={20} />, title: 'Ultra-Fast P2P Transfers', desc: 'Files stream directly between browsers via WebRTC DataChannel. Speed is limited only by your WiFi — typically 50–200 MB/s with zero relay latency.', tag: 'Core', color: '#E8321A' },
+    { icon: <Zap size={20} />, title: 'Ultra-Fast P2P Transfers', desc: 'Files stream directly between browsers. Speed is limited only by your WiFi — typically 50–200 MB/s with zero relay latency.', tag: 'Core', color: '#E8321A' },
     { icon: <Shield size={20} />, title: 'Zero Cloud Storage', desc: 'Your files never touch our servers. Everything transfers peer-to-peer directly between browsers, keeping your data completely private and under your control.', tag: 'Privacy', color: '#6366F1' },
     { icon: <Upload size={20} />, title: 'Drag & Drop Files', desc: 'Simply drag files onto the drop zone or click to browse. Supports any file format (photos, 4K videos, audio, PDFs, archives) with zero file size limits.', color: '#F97316' },
     { icon: <FileText size={20} />, title: 'Text & Link Sharing', desc: 'Send text snippets, code blocks, URLs, and notes. Links are auto-detected and rendered as clickable. Send with Ctrl+Enter.', color: '#22C55E' },
     { icon: <Clipboard size={20} />, title: 'Clipboard Sharing', desc: 'One-click clipboard share button reads your clipboard and sends the content instantly to connected peers. Perfect for quick sharing.', color: '#8B5CF6' },
     { icon: <QrCode size={20} />, title: 'QR Code Pairing', desc: 'Every room generates a QR code. Scan it with your phone camera to instantly join the room — no typing, no link sharing needed.', color: '#06B6D4' },
     { icon: <Smartphone size={20} />, title: 'Any Device, Any OS', desc: 'Works on iPhone, Android, Mac, Windows, Linux, ChromeOS — anything with a modern browser. No app install, no driver, no pairing dance.', tag: 'Universal', color: '#F59E0B' },
-    { icon: <Lock size={20} />, title: 'End-to-End DTLS Encryption', desc: 'All WebRTC connections are encrypted with DTLS by default. Even on shared WiFi, your transfers are protected from eavesdropping.', color: '#10B981' },
+    { icon: <Lock size={20} />, title: 'End-to-End DTLS Encryption', desc: 'All direct peer connections are encrypted by default. Even on shared WiFi, your transfers are protected from eavesdropping.', color: '#10B981' },
     { icon: <Clock size={20} />, title: 'Auto-Expiring Rooms', desc: 'Rooms automatically expire after 30 minutes of inactivity. No stale sessions, no cleanup needed. Extend with a single click.', color: '#64748B' },
     { icon: <Gauge size={20} />, title: 'Real-Time Progress', desc: 'Live progress bars, transfer speed, and ETA for every file transfer. Cancel transfers mid-stream if needed.', color: '#EC4899' },
     { icon: <Link2 size={20} />, title: 'Smart Link Detection', desc: 'URLs are automatically detected in text messages and displayed as clickable links with an "Open in new tab" action button.', color: '#0EA5E9' },

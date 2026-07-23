@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Nudge — Instant P2P File & Content Transfer",
   description: "Browser-based, peer-to-peer file, photo, video, text, and clipboard transfer over local network. No account, no install, no cloud storage. 100% private & encrypted.",
-  keywords: ["P2P file transfer", "local network share", "browser file sharing", "Airdrop alternative", "WebRTC file share", "instant share"],
+  keywords: ["P2P file transfer", "local network share", "browser file sharing", "Airdrop alternative", "direct file share", "instant share"],
   authors: [{ name: "Nudge Team" }],
   openGraph: {
     title: "Nudge — Instant P2P File & Content Transfer",

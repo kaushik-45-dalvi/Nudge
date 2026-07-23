@@ -83,7 +83,7 @@ export function Footer() {
 
           <div style={{ borderTop: '1px solid #1E1E1E', paddingTop: 20, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
             <p style={{ fontSize: '0.6875rem', color: '#4B4845' }}>© {new Date().getFullYear()} Nudge · Built for speed</p>
-            <p style={{ fontSize: '0.6875rem', color: '#4B4845' }}>Made with WebRTC, Next.js &amp; Socket.IO</p>
+            <p style={{ fontSize: '0.6875rem', color: '#4B4845' }}>Direct Browser-to-Browser Transfer</p>
           </div>
         </div>
       </footer>

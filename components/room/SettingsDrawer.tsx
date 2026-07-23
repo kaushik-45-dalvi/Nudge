@@ -185,7 +185,7 @@ export function SettingsDrawer({ isOpen, onClose }: SettingsDrawerProps) {
               <ShieldAlert className="w-5 h-5 flex-shrink-0 mt-0.5" />
               <div>
                 <span className="font-bold block mb-1">Local P2P Stream Encryption</span>
-                Files transfer strictly over local peer connections (WebRTC) and are secured by standard end-to-end DTLS protocols. Files never contact the cloud.
+                Files transfer strictly over local peer connections and are secured by standard end-to-end encryption protocols. Files never contact the cloud.
               </div>
             </div>
 
