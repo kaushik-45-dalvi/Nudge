@@ -268,18 +268,18 @@ export class FileTransferManager {
 
     const waitForBufferToDrain = (): Promise<void> => {
       return new Promise<void>((resolve) => {
-        const activeSend = this.activeSends.get(transferId);
-        if (!activeSend) {
+        if (!this.activeSends.has(transferId)) {
           resolve();
           return;
         }
 
         if (channel.bufferedAmount > 1024 * 1024) { // Pause if > 1MB
-          activeSend.paused = true;
-          activeSend.resume = () => {
-            activeSend.resume = null;
-            resolve();
-          };
+          const interval = setInterval(() => {
+            if (channel.bufferedAmount < 256 * 1024 || !this.activeSends.has(transferId)) {
+              clearInterval(interval);
+              resolve();
+            }
+          }, 50);
         } else {
           resolve();
         }
