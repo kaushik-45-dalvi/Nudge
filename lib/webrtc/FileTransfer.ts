@@ -128,15 +128,18 @@ export class FileTransferManager {
 
     const blob = new Blob(transfer.chunks, { type: transfer.mimeType });
     
-    // Trigger download
+    // Trigger download with cross-platform (iOS Safari / Android) fallback
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = transfer.name;
+    a.style.display = 'none';
     document.body.appendChild(a);
     a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 10000);
 
     // Update stores
     useTransferStore.getState().completeTransfer(transferId);
