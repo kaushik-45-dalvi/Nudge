@@ -148,7 +148,7 @@ export function Hero() {
                     {isCreating ? 'Creating…' : 'Create a Room'}
                     {!isCreating && <ArrowRight size={15} />}
                   </button>
-                  <button onClick={() => router.push('/how-it-works')} onMouseEnter={() => router.prefetch('/how-it-works')} className="btn-outline">See How It Works</button>
+                  <button onClick={() => router.push('/how-it-works')} className="btn-outline">See How It Works</button>
                 </div>
 
                 <div style={{ paddingTop: 20, borderTop: '1px solid #ECEAE6' }}>
@@ -223,21 +223,8 @@ export function Hero() {
                 placeholder="e.g. BLUE-DUCK-7"
                 style={{ flex: 1, padding: '12px 16px', border: '1.5px solid #D0CCC8', borderRadius: 6, fontSize: '0.875rem', fontWeight: 500, letterSpacing: '0.04em', outline: 'none', background: 'white', color: '#0A0A0A', fontFamily: 'Inter, sans-serif' }}
               />
-              <button
-                type="submit"
-                disabled={isJoining}
-                className="btn-primary"
-                style={{
-                  flexShrink: 0,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  opacity: isJoining ? 0.7 : 1,
-                  cursor: isJoining ? 'not-allowed' : 'pointer'
-                }}
-              >
-                {isJoining ? 'Joining…' : 'Join Room'}
-                {!isJoining && <ArrowRight size={15} />}
+              <button type="submit" className="btn-primary" style={{ flexShrink: 0 }}>
+                Join Room
               </button>
             </form>
             {joinError && <p style={{ color: '#E8321A', fontSize: '0.8125rem', marginTop: 8, fontWeight: 500 }}>⚠ {joinError}</p>}
