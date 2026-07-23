@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://nudge.app';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://nudge-p2p.vercel.app';
 
   return {
     rules: {

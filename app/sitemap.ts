@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://nudge.app';
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://nudge-p2p.vercel.app';
 
   return [
     {
