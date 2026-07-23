@@ -1,0 +1,387 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #0A0A0A;
+  --surface: #F8F8F6;
+  --border: #E0DED9;
+
+  --font-serif: 'DM Serif Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  --retro-yellow: #FFB020;
+  --retro-orange: #F97316;
+  --retro-red: #E8321A;
+  --retro-darkred: #8B0000;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* ─── RAINBOW STRIPE BLOCK ─────────────────────────── */
+
+.brand-stripes-block {
+  position: relative;
+  height: 120px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.brand-stripes-block .stripe {
+  width: 100%;
+  flex: 1;
+}
+
+/* Horizontal stripe divider (thin, full-width) */
+.brand-stripes-hr {
+  height: 10px;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    #FFD000 0%,
+    #FFB020 16%,
+    #F97316 32%,
+    #EF4444 48%,
+    #E8321A 64%,
+    #C41A00 80%,
+    #8B0000 100%
+  );
+}
+
+/* Angled "rocket exhaust" stripe used inside cards */
+.stripe-exhaust {
+  position: relative;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 0 0 8px 8px;
+}
+
+.stripe-exhaust::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -20%;
+  right: -5%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    #FFD000 0%,
+    #FFB020 20%,
+    #F97316 40%,
+    #EF4444 60%,
+    #C41A00 80%,
+    #8B0000 100%
+  );
+  transform: skewX(-8deg);
+  transform-origin: bottom left;
+  border-radius: 2px;
+}
+
+/* ─── DOTTED CARD BORDERS ─────────────────────────── */
+
+.dashed-card {
+  border: 1.5px dashed #B8B5AE;
+  border-radius: 8px;
+  background: #FFFFFF;
+  transition: border-color 0.2s ease;
+}
+
+.dashed-card:hover {
+  border-color: #8B8580;
+}
+
+/* ─── NAV LINK ───────────────────────────────────────── */
+
+.nav-link {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #3A3633;
+  letter-spacing: 0.01em;
+  transition: color 0.15s;
+}
+
+.nav-link:hover {
+  color: #0A0A0A;
+}
+
+/* ─── CTA BUTTONS ─────────────────────────────────── */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: #0A0A0A;
+  color: #FFFFFF;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 4px;
+  border: 1.5px solid #0A0A0A;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btn-primary:hover {
+  background: #1A1A1A;
+}
+
+.btn-primary:active {
+  transform: scale(0.985);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: transparent;
+  color: #0A0A0A;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 4px;
+  border: 1.5px solid #0A0A0A;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-outline:hover {
+  background: #F0EDEA;
+}
+
+/* ─── LABEL TAG ───────────────────────────────────── */
+
+.label-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--retro-red);
+}
+
+.label-tag::before,
+.label-tag::after {
+  content: '—';
+  color: #C0BDB8;
+  font-weight: 400;
+}
+
+/* ─── SCROLLBAR ───────────────────────────────────── */
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #D0CCC8; border-radius: 4px; }
+
+/* ─── ANIMATIONS ─────────────────────────────────── */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.5s ease both;
+}
+
+@keyframes stripe-slide {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+.animate-stripe {
+  animation: stripe-slide 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─── ICON BOX ─────────────────────────────────── */
+
+.icon-box {
+  width: 40px;
+  height: 40px;
+  border: 1.5px dashed #B8B5AE;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F8F8F6;
+  flex-shrink: 0;
+}
+
+/* ─── ROOM LAYOUT COMPAT CLASSES ─────────────────── */
+/* Used by RoomLayout, TextInput, TransferFeed etc   */
+
+.retro-card {
+  background-color: #FFFFFF;
+  border: 1.5px dashed #B8B5AE;
+  border-radius: 10px;
+  transition: border-color 0.2s ease;
+}
+
+.brand-stripes {
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    #FFF5A5 0%,
+    #FFD000 16%,
+    #FFB020 32%,
+    #F97316 48%,
+    #EF4444 64%,
+    #E8321A 80%,
+    #8B0000 100%
+  );
+  box-shadow: 0 -3px 12px rgba(255, 208, 0, 0.6);
+}
+
+/* Animations */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.98); }
+}
+.pulse-slow {
+  animation: pulse-slow 3s infinite ease-in-out;
+}
+
+/* ─── SPIN ANIMATION (for loading spinners) ───────── */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ─── ROOM LAYOUT RESPONSIVE ──────────────────────── */
+
+.room-main-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 16px;
+}
+
+.workspace-top-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.desktop-sidebar {
+  display: flex;
+}
+
+.sidebar-toggle-btn {
+  display: none !important;
+}
+
+.mobile-sidebar-overlay {
+  display: none;
+}
+
+/* ─── MOBILE DRAWER & BREAKPOINT STYLES ───────────── */
+
+@media (max-width: 860px) {
+  .room-main-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .workspace-top-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .desktop-sidebar {
+    display: none !important;
+  }
+
+  .sidebar-toggle-btn {
+    display: flex !important;
+  }
+
+  .mobile-sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(10, 10, 10, 0.3);
+    backdrop-filter: blur(4px);
+  }
+
+  .mobile-sidebar-drawer {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    bottom: 0;
+    width: min(280px, 85vw);
+    max-height: calc(100vh - 56px);
+    overflow-y: auto;
+    background: #fff;
+    border-right: 1px solid #ECEAE6;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.08);
+    padding: 16px;
+    animation: slideInLeft 0.2s ease;
+  }
+
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  .nav-links-desktop {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-join-form {
+    flex-direction: column !important;
+  }
+  .hero-join-form input,
+  .hero-join-form button {
+    width: 100% !important;
+  }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+/* ─── HOW IT WORKS FLOW DIAGRAM ───────────────────── */
+.flow-diagram {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+@media (max-width: 860px) {
+  .flow-diagram {
+    flex-direction: column !important;
+    gap: 0 !important;
+  }
+  .flow-arrow {
+    display: none !important;
+  }
+  .flow-arrow-down {
+    display: flex !important;
+  }
+  .nav-links-desktop {
+    display: none !important;
+  }
+}

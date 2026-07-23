@@ -1,0 +1,17 @@
+{
+  "name": "Nudge",
+  "short_name": "Nudge",
+  "description": "Instant Local File & Content Transfer — Browser-Based, No Account, No Cloud",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#6366F1",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ]
+}
