@@ -12,10 +12,14 @@ export function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [rating, setRating] = useState<number>(5);
+  const [hoverRating, setHoverRating] = useState<number | null>(null);
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
   if (!isOpen) return null;
+
+  const RATING_LABELS = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+  const currentRating = hoverRating !== null ? hoverRating : rating;
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -132,26 +136,38 @@ export function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16, marginTop: 8 }}>
             {/* Rating */}
             <div>
-              <label style={{ display: 'block', fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6B6560', marginBottom: 8 }}>
-                How would you rate Nudge?
-              </label>
-              <div style={{ display: 'flex', gap: 8 }}>
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <button
-                    key={star}
-                    type="button"
-                    onClick={() => setRating(star)}
-                    style={{
-                      background: star <= rating ? '#FFFBEB' : '#F8F8F6',
-                      border: star <= rating ? '1px solid #FCD34D' : '1px solid #ECEAE6',
-                      borderRadius: 8, padding: '8px 12px', cursor: 'pointer',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1,
-                      transition: 'all 0.15s ease'
-                    }}
-                  >
-                    <Star size={16} fill={star <= rating ? '#F59E0B' : 'none'} color={star <= rating ? '#F59E0B' : '#B8B5AE'} />
-                  </button>
-                ))}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                <label style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6B6560' }}>
+                  How would you rate Nudge?
+                </label>
+                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#F59E0B' }}>
+                  {currentRating} / 5 · {RATING_LABELS[currentRating]}
+                </span>
+              </div>
+              <div style={{ display: 'flex', gap: 8 }} onMouseLeave={() => setHoverRating(null)}>
+                {[1, 2, 3, 4, 5].map((star) => {
+                  const isActive = star <= currentRating;
+                  return (
+                    <button
+                      key={star}
+                      type="button"
+                      onClick={() => setRating(star)}
+                      onMouseEnter={() => setHoverRating(star)}
+                      title={`${star} star${star > 1 ? 's' : ''}`}
+                      style={{
+                        background: isActive ? '#FFFBEB' : '#F8F8F6',
+                        border: isActive ? '1.5px solid #F59E0B' : '1.5px solid #ECEAE6',
+                        borderRadius: 8, padding: '10px 0', cursor: 'pointer',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1,
+                        boxShadow: isActive ? '0 2px 8px rgba(245, 158, 11, 0.25)' : 'none',
+                        transition: 'all 0.15s cubic-bezier(0.4, 0, 0.2, 1)',
+                        transform: isActive ? 'scale(1.05)' : 'scale(1)'
+                      }}
+                    >
+                      <Star size={18} fill={isActive ? '#F59E0B' : 'transparent'} color={isActive ? '#F59E0B' : '#B8B5AE'} strokeWidth={1.5} />
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
