@@ -39,8 +39,29 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    'name': 'Nudge',
+    'url': 'https://nudge.app',
+    'applicationCategory': 'UtilitiesApplication',
+    'operatingSystem': 'Windows, macOS, Android, iOS, Linux',
+    'description': 'Browser-based, peer-to-peer file, photo, video, text, and clipboard transfer over local network.',
+    'offers': {
+      '@type': 'Offer',
+      'price': '0',
+      'priceCurrency': 'USD'
+    }
+  };
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="font-sans antialiased selection:bg-[#E8321A] selection:text-white">
         {children}
       </body>
