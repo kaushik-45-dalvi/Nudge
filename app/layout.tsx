@@ -65,6 +65,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="6554ff53-d4d1-4bd2-b49b-e2f019963fa9"
+        />
       </head>
       <body className="font-sans antialiased selection:bg-[#E8321A] selection:text-white">
         {children}
