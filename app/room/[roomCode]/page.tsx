@@ -1,28 +1,21 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { signalingClient } from '../../../lib/webrtc/SignalingClient';
 import { peerManager } from '../../../lib/webrtc/PeerManager';
 import { useRoomStore } from '../../../store/roomStore';
 import { RoomLayout } from '../../../components/room/RoomLayout';
-import { Loader2, AlertCircle, ArrowLeft } from 'lucide-react';
 
 export default function RoomPage() {
   const params = useParams();
-  const router = useRouter();
   const roomCode = params.roomCode as string;
-
-  const isConnecting = useRoomStore(s => s.isConnecting);
-  const error = useRoomStore(s => s.error);
-  const roomData = useRoomStore(s => s.roomCode);
-  const socketConnected = useRoomStore(s => s.socketConnected);
 
   useEffect(() => {
     if (!roomCode) return;
 
     console.log(`[RoomPage] Mounting page for room: ${roomCode}`);
-    
+
     // Clear any previous error
     useRoomStore.getState().setError(null);
 
@@ -47,39 +40,6 @@ export default function RoomPage() {
     };
   }, [roomCode]);
 
-  return <RoomLayout />;
-
-  // Loading / connecting state
-  if (isConnecting && !roomData) {
-    return (
-      <div style={{ 
-        minHeight: '100vh', 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center', 
-        fontFamily: 'Inter, system-ui, sans-serif',
-        background: '#FFFFFF'
-      }}>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{
-            width: 56, height: 56, borderRadius: '50%',
-            background: '#F8F8F6', border: '1.5px solid #ECEAE6',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            margin: '0 auto 16px', color: '#6B6560',
-            animation: 'spin 1s linear infinite'
-          }}>
-            <Loader2 size={24} />
-          </div>
-          <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: '1.3rem', fontWeight: 400, marginBottom: 6, color: '#0A0A0A' }}>
-            Connecting to Room
-          </h2>
-          <p style={{ fontSize: '0.8125rem', color: '#9B9791' }}>
-            Joining <strong style={{ color: '#3A3633', letterSpacing: '0.04em' }}>{roomCode.toUpperCase()}</strong>…
-          </p>
-        </div>
-      </div>
-    );
-  }
-
+  // Always render RoomLayout — it handles connecting/waiting states internally
   return <RoomLayout />;
 }
