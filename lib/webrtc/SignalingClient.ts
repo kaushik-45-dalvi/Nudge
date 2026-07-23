@@ -15,7 +15,19 @@ export class SignalingClient {
   private pingInterval: NodeJS.Timeout | null = null;
 
   constructor() {
-    this.serverUrl = process.env.NEXT_PUBLIC_SIGNALING_URL || 'http://localhost:5001';
+    this.serverUrl = this.getServerUrl();
+  }
+
+  private getServerUrl(): string {
+    if (process.env.NEXT_PUBLIC_SIGNALING_URL) {
+      return process.env.NEXT_PUBLIC_SIGNALING_URL;
+    }
+    if (typeof window !== 'undefined') {
+      const protocol = window.location.protocol === 'https:' ? 'https:' : 'http:';
+      const host = window.location.hostname;
+      return `${protocol}//${host}:5001`;
+    }
+    return 'http://localhost:5001';
   }
 
   public connect(
@@ -44,18 +56,21 @@ export class SignalingClient {
       return;
     }
 
+    // Refresh server URL in case hostname changed
+    this.serverUrl = this.getServerUrl();
     console.log(`[SignalingClient] Connecting to signaling server at ${this.serverUrl}`);
 
     this.socket = io(this.serverUrl, {
       withCredentials: true,
       transports: ['websocket', 'polling'],
       reconnection: true,
-      reconnectionAttempts: 5,
+      reconnectionAttempts: 10,
       reconnectionDelay: 1000,
     });
 
     this.socket.on('connect', () => {
       console.log(`[SignalingClient] Socket connected: ${this.socket?.id}`);
+      useRoomStore.getState().setError(null);
       useRoomStore.getState().setSocketConnected(true);
 
       const localDevice = detectDevice();
@@ -66,6 +81,7 @@ export class SignalingClient {
       });
 
       // Start ping heartbeat
+      if (this.pingInterval) clearInterval(this.pingInterval);
       this.pingInterval = setInterval(() => {
         this.socket?.emit('room:ping');
       }, 30000);
@@ -74,7 +90,6 @@ export class SignalingClient {
       if (this.pendingRoomCode) {
         console.log(`[SignalingClient] Emitting queued room:join for ${this.pendingRoomCode}`);
         const ld = detectDevice();
-        useRoomStore.getState().setConnecting(true);
         this.socket!.emit('room:join', { roomCode: this.pendingRoomCode, deviceInfo: ld });
         this.pendingRoomCode = null;
       } else {
@@ -89,7 +104,11 @@ export class SignalingClient {
     });
 
     this.socket.on('connect_error', (err) => {
-      console.error('[SignalingClient] Connection error:', err.message);
+      console.warn('[SignalingClient] Socket retrying connection:', err.message);
+    });
+
+    this.socket.io.on('reconnect_failed', () => {
+      console.error('[SignalingClient] All reconnection attempts failed.');
       useRoomStore.getState().setError('Could not connect to signaling server (port 5001). Please check if server is running.');
     });
 
