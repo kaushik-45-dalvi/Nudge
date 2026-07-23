@@ -1,9 +1,11 @@
 'use client';
 
-import React, { useState, FormEvent } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowRight, Zap, Shield, Share2, MessageSquare } from 'lucide-react';
 import { generateRoomCode } from '../../lib/utils/roomCode';
+import { signalingClient } from '../../lib/webrtc/SignalingClient';
+import { peerManager } from '../../lib/webrtc/PeerManager';
 import { FeedbackModal } from '../common/FeedbackModal';
 
 const STRIPE_COLORS = [
@@ -67,9 +69,15 @@ export function Hero() {
   const [isCreating, setIsCreating] = useState(false);
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
 
+  useEffect(() => {
+    // Pre-connect signaling socket in background for instant room creation/joining
+    peerManager.init();
+  }, []);
+
   const handleCreateRoom = () => {
     setIsCreating(true);
     const code = generateRoomCode();
+    router.prefetch('/room/' + code);
     router.push('/room/' + code);
   };
 
@@ -81,6 +89,7 @@ export function Hero() {
       setJoinError('Please enter a room code');
       return;
     }
+    router.prefetch('/room/' + code);
     router.push('/room/' + code);
   };
 

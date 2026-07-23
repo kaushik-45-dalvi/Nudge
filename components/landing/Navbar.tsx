@@ -16,6 +16,7 @@ export function Navbar() {
   const handleCreateRoom = () => {
     setIsCreating(true);
     const code = generateRoomCode();
+    router.prefetch('/room/' + code);
     router.push('/room/' + code);
   };
 

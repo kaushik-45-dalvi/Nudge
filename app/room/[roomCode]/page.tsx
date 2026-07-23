@@ -25,17 +25,22 @@ export default function RoomPage() {
     
     // Clear any previous error
     useRoomStore.getState().setError(null);
-    useRoomStore.getState().setConnecting(true);
+
+    // Optimistic room setup for instant sub-50ms UI rendering
+    const code = roomCode.toUpperCase();
+    const origin = typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000';
+    const roomUrl = `${origin}/room/${code}`;
+    useRoomStore.getState().setRoomData(code, roomUrl, [], Date.now() + 30 * 60 * 1000);
 
     // 1. Initialize PeerManager and event bindings
     peerManager.init();
 
     // 2. Join signaling server room (auto-creates if needed)
-    signalingClient.joinRoom(roomCode);
+    signalingClient.joinRoom(code);
 
     // Cleanup on unmount
     return () => {
-      console.log(`[RoomPage] Unmounting page for room: ${roomCode}`);
+      console.log(`[RoomPage] Unmounting page for room: ${code}`);
       signalingClient.disconnect();
       peerManager.clearAll();
       useRoomStore.getState().clearRoom();
