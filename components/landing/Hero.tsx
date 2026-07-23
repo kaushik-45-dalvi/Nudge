@@ -58,6 +58,7 @@ function FeatureCard({ icon, title, desc, hasStripe = false, imageSrc }: Feature
 }
 
 import { Navbar } from './Navbar';
+import { Footer } from './Footer';
 
 export function Hero() {
   const router = useRouter();
@@ -259,38 +260,8 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Bottom stripes with yellow top glow */}
-        <div style={{ display: 'flex', flexDirection: 'column', position: 'relative', boxShadow: '0 -4px 18px rgba(255, 208, 0, 0.5)' }}>
-          <div style={{ height: 3, background: 'linear-gradient(to right, #FFF5A5, #FFD000, #FFB020, #FFF5A5)', boxShadow: '0 0 10px #FFD000' }} />
-          {STRIPE_COLORS.map((c, i) => (
-            <div key={i} style={{ backgroundColor: c, height: 10 }} />
-          ))}
-        </div>
-
-        {/* ── FOOTER ─────────────────────────────────── */}
-        <footer style={{ background: '#0A0A0A', borderTop: '1px solid #1E1E1E', padding: '32px 32px' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20 }}>
-            <div>
-              <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: '1.2rem', fontWeight: 700, color: 'white' }}>
-                nudge<span style={{ color: '#FFB020' }}>.</span>
-              </span>
-              <p style={{ fontSize: '0.75rem', color: '#4B4845', marginTop: 4 }}>© {new Date().getFullYear()} Nudge · Built for speed</p>
-            </div>
-            <div style={{ display: 'flex', gap: 36 }}>
-              {[
-                { v: '100%', s: 'peer-to-peer' },
-                { v: '0 MB', s: 'cloud storage' },
-                { v: 'Unlimited', s: 'file size limit' },
-              ].map(({ v, s }) => (
-                <div key={s} style={{ textAlign: 'center' }}>
-                  <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: '1.15rem', color: 'white', fontWeight: 700 }}>{v}</div>
-                  <div style={{ fontSize: '0.6875rem', color: '#4B4845', fontWeight: 500, letterSpacing: '0.06em', textTransform: 'uppercase', marginTop: 2 }}>{s}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </footer>
       </main>
+      <Footer />
       <FeedbackModal isOpen={isFeedbackOpen} onClose={() => setIsFeedbackOpen(false)} />
     </div>
   );
