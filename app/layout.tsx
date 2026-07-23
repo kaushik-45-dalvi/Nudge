@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "/icons/logo.svg",
     apple: "/icons/logo.svg"
+  },
+  verification: {
+    google: "DaX_GLvOQcuOcN0iIiZ_J7Jol2Bgnr0rsBcyYXguqeI",
   }
 };
 
