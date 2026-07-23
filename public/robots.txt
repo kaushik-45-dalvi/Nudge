@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /room/*
+
+Sitemap: https://nudge-p2p.vercel.app/sitemap.xml
