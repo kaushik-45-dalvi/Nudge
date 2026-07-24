@@ -22,6 +22,9 @@ export class SignalingClient {
     if (process.env.NEXT_PUBLIC_SIGNALING_URL) {
       return process.env.NEXT_PUBLIC_SIGNALING_URL;
     }
+    if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      return 'https://nudge-production-51ef.up.railway.app';
+    }
     if (typeof window !== 'undefined') {
       const protocol = window.location.protocol === 'https:' ? 'https:' : 'http:';
       const host = window.location.hostname;

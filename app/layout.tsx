@@ -22,8 +22,12 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
   icons: {
-    icon: "/icons/logo.svg",
-    apple: "/icons/logo.svg"
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icons/logo.svg", type: "image/svg+xml" }
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png"
   },
   verification: {
     google: "DaX_GLvOQcuOcN0iIiZ_J7Jol2Bgnr0rsBcyYXguqeI",

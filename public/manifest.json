@@ -4,14 +4,24 @@
   "description": "Instant Local File & Content Transfer — Browser-Based, No Account, No Cloud",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FFFFFF",
-  "theme_color": "#6366F1",
+  "background_color": "#0A0A0A",
+  "theme_color": "#0A0A0A",
   "orientation": "portrait",
   "icons": [
     {
       "src": "/icons/logo.svg",
       "type": "image/svg+xml",
       "sizes": "any"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ]
 }
