@@ -11,7 +11,7 @@ import { QRCodeOverlay } from './QRCodeOverlay';
 import { RoomExpiry } from './RoomExpiry';
 import { DeviceBadge } from '../common/DeviceIcon';
 import { FeedbackModal } from '../common/FeedbackModal';
-import { Copy, QrCode, LogOut, Users, Menu, X, Sparkles, MessageSquare } from 'lucide-react';
+import { Copy, QrCode, LogOut, Users, Menu, X, Lightbulb, MessageSquare } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { formatRoomCode } from '../../lib/utils/roomCode';
 
@@ -112,7 +112,7 @@ export function RoomLayout() {
       {/* Quick tips */}
       <div className="dashed-card" style={{ padding: 20 }}>
         <div style={{ fontSize: '0.6875rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6B6560', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 6 }}>
-          <Sparkles size={14} color="#FFB020" />
+          <Lightbulb size={14} color="#F59E0B" />
           <span>Quick Tips</span>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
